@@ -59,4 +59,7 @@ public class LessonContainer : MonoBehaviour
             lessonContainer.SetActive(true);
         }
     }
+
+    [Header("Lesson Data")]
+    public ScriptableObject LessonData;
 }
