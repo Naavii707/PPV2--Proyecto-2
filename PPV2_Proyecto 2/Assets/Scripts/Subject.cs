@@ -11,4 +11,5 @@ public class Subject : ScriptableObject
 
     [Header("Lession Quest Configuration")]
     public List<Leccion> leccionList;
+
 }
