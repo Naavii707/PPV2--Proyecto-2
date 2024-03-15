@@ -31,10 +31,13 @@ public class LessonContainer : MonoBehaviour
         }
     }
 
+
+    // Actualiza la UI con los datos de la lección
     public void OnUpdateUI()
     {
         if (StageTitle != null || LessonStage != null) 
-        { 
+        {
+            // Actualiza el título y el numero de la lección
             StageTitle.text = "Leccion " + Lection;
             LessonStage.text = "Leccion " + CurrentLession + " de " + TotalLessions;
         }
@@ -45,6 +48,7 @@ public class LessonContainer : MonoBehaviour
         }
     }
 
+    // Activa o desactiva el contenedor de la lección y actualiza la UI
     public void EnableWindow () 
     {
         OnUpdateUI();
@@ -60,6 +64,7 @@ public class LessonContainer : MonoBehaviour
         }
     }
 
+    // Datos de la lección almacenados como Script.
     [Header("Lesson Data")]
     public ScriptableObject LessonData;
 }

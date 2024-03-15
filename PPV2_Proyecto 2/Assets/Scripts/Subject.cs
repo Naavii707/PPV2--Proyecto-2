@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class Subject : ScriptableObject
 {
+    // Declaración de una variable que se utilizará para almacenar el número de la lección.
     [Header("GameObject Configuration")]
     public int Lesson = 0;
 
+    // Declaración de una lista.
+    // La clase Leccion está definida en otro script.
     [Header("Lession Quest Configuration")]
     public List<Leccion> leccionList;
 

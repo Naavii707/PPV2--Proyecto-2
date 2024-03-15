@@ -4,71 +4,171 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
-
 public class LessonManager : MonoBehaviour
 {
+    // Instancia para acceder al LessonManager 
+    public static LessonManager Instance;
+
+    // Datos del nivel actual
     [Header("Level Data")]
     public Subject Lesson;
 
     [Header("User Interface")]
     public TMP_Text QuestionTxt;
+    public TMP_Text livesTxt;
+    public GameObject CheckButton;
+    public GameObject AnswerContainer;
+    public Color Green;
+    public Color Red;
     public List<OptionBtm> Options;
+    public TMP_Text message;
 
     [Header("Game Configuration")]
     public int questionAmount = 0;
     public int currentQuestion = 0;
     public string question;
     public string correctAnswer;
+    public int answerFromPlayer = 9;
+    public int lives = 5;
 
     [Header("Current Lesson")]
     public Leccion currentLesson;
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        //Establecemos la cantidad de preguntas en la leccion
+        // Establece la cantidad de preguntas en la lección
         questionAmount = Lesson.leccionList.Count;
-        //Cargar la primera pergunta
+        // Cargar la primera pregunta
         LoadQuestion();
+
+        CheckPlayerState();
     }
 
+    // Método para cargar la siguiente pregunta
     private void LoadQuestion()
     {
-        //Aseguramos que la pregunta actual esta dentro de los limites
-        if(currentQuestion < questionAmount) 
+        // Aseguramos que la pregunta actual está dentro de los límites
+        if (currentQuestion < questionAmount)
         {
-            //Establecemos la leccíon actual
+            // Establecemos la lección actual
             currentLesson = Lesson.leccionList[currentQuestion];
-            //Establecemos la pregunta
+            // Establecemos la pregunta
             question = currentLesson.lessons;
-            //Establecemos la respuesta correcta
+            // Establecemos la respuesta correcta
             correctAnswer = currentLesson.options[currentLesson.correctAnswer];
-            //Establecemos la pregunta en UI
+            // Establecemos la pregunta en UI
             QuestionTxt.text = question;
-            //Establecemos las Opciones
-            Options[0].GetComponent<OptionBtm>().OptionName = currentLesson.options[0];
+
+
+            // Configura los botones de opción en la UI
+            for (int i = 0; i < currentLesson.options.Count; i++)
+            {
+                Options[i].GetComponent<OptionBtm>().OptionName = currentLesson.options[i];
+                Options[i].GetComponent<OptionBtm>().OptionID = i;
+                Options[i].GetComponent<OptionBtm>().UpdateText();
+            }
         }
         else
         {
-            //Si llegamos al final de las preguntas
+            // Si llegamos al final de las preguntas
             Debug.Log("Fin de las preguntas");
-           
         }
     }
 
-    public void NextCuestion()
+    // Método que maneja la lógica de la siguiente pregunta
+    public void NextQuestion()
     {
-        if(currentQuestion < questionAmount) 
+        bool isCorrect = false;
+
+        if (CheckPlayerState())
         {
-            //incrementamos el indice de la pregunta actual
-            currentQuestion++;
-            //Cargar la nueva pregunta
-            LoadQuestion();
+            // Comprueba si la respuesta del jugador es correcta
+            isCorrect = currentLesson.options[answerFromPlayer] == correctAnswer;
+
+            // Muestra el contenedor de la respuesta
+            AnswerContainer.SetActive(true);
+
+
+            // Actualiza el color del contenedor de respuesta según si la respuesta es correcta o incorrecta
+            if (isCorrect)
+            {
+
+                AnswerContainer.GetComponent<Image>().color = Green;
+                Debug.Log("Respuesta correcta. " + question + ": " + correctAnswer);
+                
+            }
+            else
+            {
+                // Reduce una vida si la respuesta es incorrecta
+                lives--; 
+                AnswerContainer.GetComponent<Image>().color = Red;
+                Debug.Log("Respuesta incorrecta. " + question + ": " + correctAnswer);
+            }
+        }
+
+        // Actualiza el texto de las vidas restantes en la UI
+        livesTxt.text = lives.ToString();
+
+        // Incrementa el número de la pregunta
+        currentQuestion++;
+
+        // Inicia una corrutina para mostrar el resultado y cargar la siguiente pregunta
+        StartCoroutine(ShowResultAndLoadQuestion(isCorrect));
+
+        // Restablece la respuesta del jugador
+        answerFromPlayer = 9;
+    }
+
+
+    // Corrutina para mostrar el resultado y cargar la siguiente pregunta
+    private IEnumerator ShowResultAndLoadQuestion(bool isCorrect)
+    {
+        // Espera 2.5 segundos
+        yield return new WaitForSeconds(2.5f);
+
+        // Oculta el contenedor de la respuesta
+        AnswerContainer.SetActive(false);
+
+        // Carga la siguiente pregunta
+        LoadQuestion();
+
+        CheckPlayerState();
+    }
+
+    // Método para establecer la respuesta del jugador
+    public void SetPlayerAnswer(int _answer)
+    {
+        answerFromPlayer = _answer;
+    }
+
+    public bool CheckPlayerState()
+    {
+        if (answerFromPlayer != 9)
+        {
+            // Habilita el botón de comprobación si se ha seleccionado una respuesta
+            CheckButton.GetComponent<Button>().interactable = true;
+            CheckButton.GetComponent<Image>().color = Color.white;
+            return true;
         }
         else
         {
-            //Cambio de escena
+            // Deshabilita el botón de comprobación si no se ha seleccionado ninguna respuesta
+            CheckButton.GetComponent<Button>().interactable = false;
+            CheckButton.GetComponent<Image>().color = Color.grey;
+            return false;
         }
     }
 }
