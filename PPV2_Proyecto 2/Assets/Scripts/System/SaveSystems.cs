@@ -77,7 +77,7 @@ public class SaveSystems : MonoBehaviour
         //SaveToJson("LeccionDummy", data);
         //CreateFile("Eilan", ".data");
 
-        subject = LoadFromJSON<SubjectContainer>("Subject Dummy");
+        subject = LoadFromJSON<SubjectContainer>("LeccionDummy");
     }
 
     public T LoadFromJSON<T>(string _fileName) where T : new()
