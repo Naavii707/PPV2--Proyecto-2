@@ -1356,6 +1356,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2e83efaed814842baca8106537191e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data:
+    ID: 0
+    lessons: 
+    options: []
+    correctAnswer: 0
+  subject:
+    Lesson: 0
+    leccionList: []
 --- !u!4 &664415558
 Transform:
   m_ObjectHideFlags: 0
@@ -2820,7 +2828,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef1cacccc927a846897aa16ddd965c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lesson: {fileID: 11400000, guid: 8c05796eac5923942bf9612476fdc7d5, type: 2}
+  subject:
+    Lesson: 0
+    leccionList: []
   QuestionTxt: {fileID: 1649385967}
   livesTxt: {fileID: 1137023823}
   CheckButton: {fileID: 719115825}
@@ -3757,7 +3767,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1775031867}
   - {fileID: 1725002056}
+  - {fileID: 1775031867}
   - {fileID: 507352111}
   - {fileID: 664415558}

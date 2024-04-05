@@ -7,8 +7,6 @@ public class SaveSystems : MonoBehaviour
 {
     public static SaveSystems instance;
 
-    
-
     public Leccion data;
     public SubjectContainer subject;
 
@@ -23,6 +21,8 @@ public class SaveSystems : MonoBehaviour
         {
             instance = this;
         }
+
+        subject = LoadFromJSON<SubjectContainer>(PlayerPrefs.GetString("SelectedLesson"));
     }
 
     public void SaveToJson(string _fileName, object _data)
@@ -77,7 +77,7 @@ public class SaveSystems : MonoBehaviour
         //SaveToJson("LeccionDummy", data);
         //CreateFile("Eilan", ".data");
 
-        subject = LoadFromJSON<SubjectContainer>("LeccionDummy");
+        //subject = LoadFromJSON<SubjectContainer>("LeccionDummy");
     }
 
     public T LoadFromJSON<T>(string _fileName) where T : new()

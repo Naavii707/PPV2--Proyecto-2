@@ -666,6 +666,7 @@ MonoBehaviour:
   StageTitle: {fileID: 260485789}
   LessonStage: {fileID: 877799521}
   lessonContainer: {fileID: 587291659}
+  LessonName: Leccion2
   LessonData: {fileID: 0}
 --- !u!1 &587291659
 GameObject:
@@ -1134,6 +1135,7 @@ MonoBehaviour:
   StageTitle: {fileID: 260485789}
   LessonStage: {fileID: 877799521}
   lessonContainer: {fileID: 587291659}
+  LessonName: Leccion5
   LessonData: {fileID: 0}
 --- !u!1 &825623247
 GameObject:
@@ -2284,6 +2286,7 @@ GameObject:
   - component: {fileID: 1775031866}
   - component: {fileID: 1775031865}
   - component: {fileID: 1775031864}
+  - component: {fileID: 1775031868}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2375,6 +2378,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1775031868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1775031863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30fc088b00a94b84d8a5244b00b0f519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedLesson: dummy
 --- !u!1 &2064867206
 GameObject:
   m_ObjectHideFlags: 0
@@ -2607,6 +2623,7 @@ MonoBehaviour:
   StageTitle: {fileID: 260485789}
   LessonStage: {fileID: 877799521}
   lessonContainer: {fileID: 587291659}
+  LessonName: Leccion3
   LessonData: {fileID: 0}
 --- !u!1 &2127645239
 GameObject:
@@ -2620,7 +2637,6 @@ GameObject:
   - component: {fileID: 2127645243}
   - component: {fileID: 2127645242}
   - component: {fileID: 2127645241}
-  - component: {fileID: 2127645244}
   m_Layer: 5
   m_Name: EmpezarLeccion
   m_TagString: Cambio
@@ -2692,13 +2708,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2127645239}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1775031868}
+        m_TargetAssemblyTypeName: MainScript, Assembly-CSharp
+        m_MethodName: BeginGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2742,19 +2758,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2127645239}
   m_CullTransparentMesh: 1
---- !u!114 &2127645244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127645239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d3b2f8f57b8ed24ab75fb68f0f6b7e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombreDeLaEscena: Lessons
 --- !u!1001 &2129032207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2907,6 +2910,7 @@ MonoBehaviour:
   StageTitle: {fileID: 260485789}
   LessonStage: {fileID: 877799521}
   lessonContainer: {fileID: 587291659}
+  LessonName: Leccion4
   LessonData: {fileID: 0}
 --- !u!1001 &7151943029580184289
 PrefabInstance:
@@ -3157,6 +3161,7 @@ MonoBehaviour:
   StageTitle: {fileID: 260485789}
   LessonStage: {fileID: 877799521}
   lessonContainer: {fileID: 587291659}
+  LessonName: Leccion1
   LessonData: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

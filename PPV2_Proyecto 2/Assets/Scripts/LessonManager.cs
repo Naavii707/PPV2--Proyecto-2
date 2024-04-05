@@ -11,7 +11,7 @@ public class LessonManager : MonoBehaviour
 
     // Datos del nivel actual
     [Header("Level Data")]
-    public Subject Lesson;
+    public SubjectContainer subject;
 
     [Header("User Interface")]
     public TMP_Text QuestionTxt;
@@ -49,8 +49,9 @@ public class LessonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        subject = SaveSystems.instance.subject;
         // Establece la cantidad de preguntas en la lección
-        questionAmount = Lesson.leccionList.Count;
+        questionAmount = subject.leccionList.Count;
         // Cargar la primera pregunta
         LoadQuestion();
 
@@ -64,7 +65,7 @@ public class LessonManager : MonoBehaviour
         if (currentQuestion < questionAmount)
         {
             // Establecemos la lección actual
-            currentLesson = Lesson.leccionList[currentQuestion];
+            currentLesson = subject.leccionList[currentQuestion];
             // Establecemos la pregunta
             question = currentLesson.lessons;
             // Establecemos la respuesta correcta

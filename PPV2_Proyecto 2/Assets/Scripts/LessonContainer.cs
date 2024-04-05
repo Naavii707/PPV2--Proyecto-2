@@ -17,6 +17,7 @@ public class LessonContainer : MonoBehaviour
 
     [Header("External GameObject Configuration")]
     public GameObject lessonContainer;
+    public string LessonName;
 
     void Start()
     {
@@ -61,6 +62,7 @@ public class LessonContainer : MonoBehaviour
         else
         {
             lessonContainer.SetActive(true);
+            MainScript.instance.SetSelectedLesson(LessonName);
         }
     }
 
