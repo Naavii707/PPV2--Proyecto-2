@@ -11,7 +11,7 @@ public class LessonManager : MonoBehaviour
 
     // Datos del nivel actual
     [Header("Level Data")]
-    public Subject Lesson;
+    public SubjectContainer subject;
 
     [Header("User Interface")]
     public TMP_Text QuestionTxt;
@@ -49,8 +49,9 @@ public class LessonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        subject = SaveSystems.instance.subject;
         // Establece la cantidad de preguntas en la lección
-        questionAmount = Lesson.leccionList.Count;
+        questionAmount = subject.leccionList.Count;
         // Cargar la primera pregunta
         LoadQuestion();
 
@@ -64,7 +65,7 @@ public class LessonManager : MonoBehaviour
         if (currentQuestion < questionAmount)
         {
             // Establecemos la lección actual
-            currentLesson = Lesson.leccionList[currentQuestion];
+            currentLesson = subject.leccionList[currentQuestion];
             // Establecemos la pregunta
             question = currentLesson.lessons;
             // Establecemos la respuesta correcta
@@ -107,7 +108,7 @@ public class LessonManager : MonoBehaviour
             {
 
                 AnswerContainer.GetComponent<Image>().color = Green;
-                Debug.Log("Respuesta correcta. " + question + ": " + correctAnswer);
+                message.text = "Respuesta correcta. " + ": " + correctAnswer;
                 
             }
             else
@@ -115,7 +116,7 @@ public class LessonManager : MonoBehaviour
                 // Reduce una vida si la respuesta es incorrecta
                 lives--; 
                 AnswerContainer.GetComponent<Image>().color = Red;
-                Debug.Log("Respuesta incorrecta. " + question + ": " + correctAnswer);
+                message.text = "Respuesta incorrecta. " + ": " + correctAnswer;
             }
         }
 
