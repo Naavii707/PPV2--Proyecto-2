@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class LessonManager : MonoBehaviour
 {
@@ -29,7 +31,7 @@ public class LessonManager : MonoBehaviour
     public string question;
     public string correctAnswer;
     public int answerFromPlayer = 9;
-    public int lives = 5;
+    public int lives = 3;
 
     [Header("Current Lesson")]
     public Leccion currentLesson;
@@ -86,6 +88,7 @@ public class LessonManager : MonoBehaviour
         {
             // Si llegamos al final de las preguntas
             Debug.Log("Fin de las preguntas");
+            SceneManager.LoadScene("main");
         }
     }
 
@@ -125,6 +128,11 @@ public class LessonManager : MonoBehaviour
 
         // Incrementa el número de la pregunta
         currentQuestion++;
+
+        if (lives == 0)
+        {
+            SceneManager.LoadScene("main");
+        }
 
         // Inicia una corrutina para mostrar el resultado y cargar la siguiente pregunta
         StartCoroutine(ShowResultAndLoadQuestion(isCorrect));
