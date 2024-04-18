@@ -108,7 +108,7 @@ public class LessonManager : MonoBehaviour
             {
 
                 AnswerContainer.GetComponent<Image>().color = Green;
-                Debug.Log("Respuesta correcta. " + question + ": " + correctAnswer);
+                message.text = "Respuesta correcta. " + ": " + correctAnswer;
                 
             }
             else
@@ -116,7 +116,7 @@ public class LessonManager : MonoBehaviour
                 // Reduce una vida si la respuesta es incorrecta
                 lives--; 
                 AnswerContainer.GetComponent<Image>().color = Red;
-                Debug.Log("Respuesta incorrecta. " + question + ": " + correctAnswer);
+                message.text = "Respuesta incorrecta. " + ": " + correctAnswer;
             }
         }
 

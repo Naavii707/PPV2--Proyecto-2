@@ -35,7 +35,7 @@ public class SaveSystems : MonoBehaviour
             {
                 Debug.Log("JSON STRING: " + JSONData);
                 string fileName = _fileName + ".json";
-                string filePath = Path.Combine(Application.dataPath + "/Resources/JSONS/" + fileName);
+                string filePath = Path.Combine(Application.dataPath + "/StreamingAssets/" + fileName);
                 File.WriteAllText(filePath, JSONData);
                 Debug.Log("JSON almacenado en la dirección: " + filePath);
             }
@@ -83,7 +83,7 @@ public class SaveSystems : MonoBehaviour
     public T LoadFromJSON<T>(string _fileName) where T : new()
     {
         T Dato = new T();
-        string path = Application.dataPath + "/Resources/JSONS/" + _fileName + ".json";
+        string path = Application.dataPath + "/StreamingAssets/" + _fileName + ".json";
         string JSONData = "";
         if (File.Exists(path)) 
         { 
@@ -106,7 +106,7 @@ public class SaveSystems : MonoBehaviour
 
     string ReadFile (string _fileName, string _extension)
     {
-        string path = Application.dataPath + "/Resources" + _fileName + _extension;
+        string path = Application.dataPath + "/StreamingAssets/" + _fileName + _extension;
         string data = "";
         if(File.Exists(path))
         {
